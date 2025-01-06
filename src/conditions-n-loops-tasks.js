@@ -66,17 +66,11 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
-  // const [qRow, qCol] = queen;
-  // const [kRow, kCol] = king;
-  // if (qRow === kCol || kRow === qCol) {
-  //   return true;
-  // }
-  // if (Math.abs(qRow - kRow) === Math.abs(qCol - kCol)) {
-  //   return true;
-  // }
-  // return false;
+function canQueenCaptureKing(queen, king) {
+  if (queen.y === king.y) return true;
+  if (queen.x === king.x) return true;
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) return true;
+  return false;
 }
 /**
  * Determines whether a triangle is isosceles based on its side lengths.
@@ -120,8 +114,18 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let result = '';
+  let dig = num;
+  const values = [10, 9, 5, 4, 1];
+  const symbols = ['X', 'IX', 'V', 'IV', 'I'];
+  for (let i = 0; i < values.length; i += 1) {
+    while (dig >= values[i]) {
+      result += symbols[i];
+      dig -= values[i];
+    }
+  }
+  return result;
 }
 
 /**
